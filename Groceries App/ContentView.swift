@@ -8,9 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selected = "Home"
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView{
+            VStack{
+                if self.selected == "Home" {
+                    Home()
+                } else if self.selected == "Wishlist" {
+                    GeometryReader{_ in
+                        Text("Wishlist")
+                    }
+                } else {
+                    GeometryReader{_ in
+                        Text("Cart")
+                    }
+                }
+                
+                CustomeTabView(selected: $selected)
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
 
